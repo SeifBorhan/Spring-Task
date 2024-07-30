@@ -2,9 +2,11 @@ package com.spring.task;
 
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class SecondCourseRecommender implements CourseRecommender{
-    public int recommendCourse(){
-        return 2;
+    public List<String> recommendCourses(){
+        return null;
     }
 }
