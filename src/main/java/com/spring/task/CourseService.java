@@ -11,7 +11,8 @@ public class CourseService {
     private CourseRecommender courseRecommender;
 
     @Autowired
-    public CourseService(CourseRecommender courseRecommender) {
+    public CourseService(
+            @Qualifier("firstCourseRecommender") CourseRecommender courseRecommender) {
         this.courseRecommender = courseRecommender;
     }
 
@@ -21,7 +22,7 @@ public class CourseService {
         this.courseRecommender = courseRecommender;
     }
 
-    public List<String> getCourseRecommender() {
-        return courseRecommender.recommendCourses();
+    public CourseRecommender getCourseRecommender() {
+        return courseRecommender;
     }
 }
