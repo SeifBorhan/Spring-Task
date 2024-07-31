@@ -1,0 +1,1 @@
+insert into author(id,name,email,birthday) values(1,'Michael','M.M@gmail.com','2024-03-01');

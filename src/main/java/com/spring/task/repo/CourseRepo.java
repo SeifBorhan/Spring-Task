@@ -1,37 +1,14 @@
-package com.spring.task;
+package com.spring.task.repo;
 
 import com.spring.task.model.Course;
-import com.spring.task.repo.CourseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-@Service
-public class CourseService {
-    private CourseRecommender courseRecommender;
-
-    private CourseRepo courseRepo;
-
-    @Autowired
-    public CourseService(
-            @Qualifier("firstCourseRecommender") CourseRecommender courseRecommender) {
-        this.courseRecommender = courseRecommender;
-    }
-
-    @Autowired
-    @Qualifier("secondCourseRecommender")
-    public void setCourseRecommender(CourseRecommender courseRecommender){
-        this.courseRecommender = courseRecommender;
-    }
-
-    public CourseRecommender getCourseRecommender() {
-        return courseRecommender;
-    }
-
+@Repository
+public class CourseRepo {
     private JdbcTemplate template;
 
 
@@ -42,7 +19,6 @@ public class CourseService {
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
     }
-
     @Transactional
     public void createCourse(Course course) {
 
@@ -66,5 +42,4 @@ public class CourseService {
     public Course viewCourse(Course course){
         String sql="select * from course where id = ?";
         return template.queryForObject(sql,new BeanPropertyRowMapper<Course>(Course.class),course.getId());}
-
 }
