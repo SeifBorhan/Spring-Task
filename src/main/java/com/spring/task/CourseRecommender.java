@@ -1,5 +1,5 @@
 package com.spring.task;
-
+import java.util.List;
 public interface CourseRecommender {
-    int recommendCourse();
+    List<String> recommendCourses();
 }

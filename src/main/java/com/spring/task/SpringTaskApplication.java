@@ -9,8 +9,7 @@ public class SpringTaskApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(SpringTaskApplication.class, args);
-//        CourseService service = context.getBean(CourseService.class);
-//        service.recommendCourse();
+        CourseService service = context.getBean(CourseService.class);
     }
 
 }
