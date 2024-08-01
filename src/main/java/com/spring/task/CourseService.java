@@ -48,6 +48,11 @@ public class CourseService {
         template.update(sql,course.getName(),course.getDescription(),course.getCredit(),course.getId());
     }
 
+    public void updateCourse(int id, Course course){
+        String sql="update course set name = ?,description = ?,credit =? where id = ?";
+        template.update(sql,course.getName(),course.getDescription(),course.getCredit(),id);
+    }
+
     @Transactional
     public void deleteCourse(Course course){
         String sql="delete from course where id = ?";
@@ -55,8 +60,22 @@ public class CourseService {
     }
 
     @Transactional
+    public void deleteCourse(int id){
+        String sql="delete from course where id = ?";
+        template.update(sql,id);
+    }
+
+    @Transactional
     public Course viewCourse(Course course){
         String sql="select * from course where id = ?";
-        return template.queryForObject(sql,new BeanPropertyRowMapper<Course>(Course.class),course.getId());}
+        return template.queryForObject(sql,new BeanPropertyRowMapper<Course>(Course.class),course.getId());
+    }
+
+    @Transactional
+    public Course viewCourse(int id){
+        String sql="select * from course where id = ?";
+        return template.queryForObject(sql, new BeanPropertyRowMapper<Course>(Course.class),id);
+    }
+
 
 }

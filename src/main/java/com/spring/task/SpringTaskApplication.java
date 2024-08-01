@@ -1,5 +1,6 @@
 package com.spring.task;
 
+import com.spring.task.controller.CourseController;
 import com.spring.task.model.Course;
 import com.spring.task.repo.CourseRepo;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +20,7 @@ public class SpringTaskApplication {
         c1.setDescription("EASY");
         c1.setCredit(8);
 
-        service.createCourse(c1);
+       // service.createCourse(c1);
 
 
     }
