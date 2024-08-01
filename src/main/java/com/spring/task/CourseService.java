@@ -28,16 +28,8 @@ public class CourseService {
         this.courseRecommender = courseRecommender;
     }
 
-    public CourseRecommender getCourseRecommender() {
-        return courseRecommender;
-    }
-
     private JdbcTemplate template;
 
-
-    public JdbcTemplate getTemplate() {
-        return template;
-    }
     @Autowired
     public void setTemplate(JdbcTemplate template) {
         this.template = template;
