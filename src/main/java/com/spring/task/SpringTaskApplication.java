@@ -11,6 +11,7 @@ public class SpringTaskApplication {
         ApplicationContext context = SpringApplication.run(SpringTaskApplication.class, args);
         CourseService service = context.getBean(CourseService.class);
         service.getCourseRecommender().recommendCourses();
+
     }
 
 }

@@ -7,8 +7,8 @@ import org.springframework.util.RouteMatcher;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-@Primary
+
+
 public class FirstCourseRecommender implements CourseRecommender{
     public List<String> recommendCourses(){
         System.out.print("FirstCourseRecommender");

@@ -16,12 +16,6 @@ public class CourseService {
         this.courseRecommender = courseRecommender;
     }
 
-    @Autowired
-    @Qualifier("secondCourseRecommender")
-    public void setCourseRecommender(CourseRecommender courseRecommender){
-        this.courseRecommender = courseRecommender;
-    }
-
     public CourseRecommender getCourseRecommender() {
         return courseRecommender;
     }
