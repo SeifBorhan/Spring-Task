@@ -11,8 +11,8 @@ public class CourseService {
     private CourseRecommender courseRecommender;
 
     @Autowired
-    public CourseService(
-            @Qualifier("firstCourseRecommender") CourseRecommender courseRecommender) {
+    @Qualifier("secondCourseRecommender")
+    public void setCourseRecommender(CourseRecommender courseRecommender){
         this.courseRecommender = courseRecommender;
     }
 
