@@ -19,9 +19,5 @@ public class AppConfig {
         return new SecondCourseRecommender();
     }
 
-    @Bean
-    public CourseService courseService(CourseRecommender courseRecommender) {
-        return new CourseService(courseRecommender);
-    }
 
 }
