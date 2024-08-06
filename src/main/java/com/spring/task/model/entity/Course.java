@@ -2,6 +2,7 @@ package com.spring.task.model.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.*;
@@ -17,7 +18,8 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column()
     private String name;
 
     private String description;
