@@ -6,7 +6,6 @@ import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
-    @Mapping(source = "id", target = "id")
     AuthorDTO toDTO(Author author);
     Author toEntity(AuthorDTO authorDTO);
 }
