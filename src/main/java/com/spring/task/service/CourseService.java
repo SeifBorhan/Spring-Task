@@ -7,6 +7,8 @@ import com.spring.task.model.mapper.CourseMapper;
 import com.spring.task.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,6 +67,11 @@ public class CourseService {
     public CourseDTO viewCourse(long id){
         Optional<Course> optionalCourse = courseRepository.findById(id);
         return optionalCourse.map(this.courseMapper::toDTO).orElse(null);
+    }
+
+    public Page<CourseDTO> getAllCourses(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return courseRepository.findAll(pageRequest).map(courseMapper::toDTO);
     }
 
 }

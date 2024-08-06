@@ -5,11 +5,13 @@ import com.spring.task.model.dto.CourseDTO;
 import com.spring.task.service.CourseService;
 import com.spring.task.model.entity.Course;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/courses")
 public class CourseController {
 
     private final CourseService courseService;
@@ -45,5 +47,11 @@ public class CourseController {
     public List<CourseDTO> discover() {
         return courseRecommender.recommendCourses();
     }
+
+    @GetMapping("/allCourses")
+    public Page<CourseDTO> getAllCourses(@RequestParam int page, @RequestParam int size) {
+        return courseService.getAllCourses(page, size);
+    }
+
 
 }
