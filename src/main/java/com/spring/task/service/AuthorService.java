@@ -23,7 +23,15 @@ public class AuthorService {
     }
 
     public AuthorDTO getAuthorByEmail(String email) {
-        Optional<Author> author = Optional.ofNullable(authorRepository.findByEmail(email));
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email must not be null or empty");
+        }
+        Optional<Author> author = Optional.ofNullable(
+                Optional.ofNullable(
+                        authorRepository.findByEmail(email))
+                .orElseThrow(
+                        () -> new RuntimeException("Author not found")));
+
         return author.map(authorMapper::toDTO).orElse(null);
     }
 }
