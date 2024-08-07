@@ -40,9 +40,9 @@ public class CourseService {
 
 
     @Transactional
-    public CourseDTO createCourse(Course course) {
-        return this.courseMapper.toDTO(courseRepository.save(course));
-       }
+    public CourseDTO createCourse(CourseDTO courseDTO) {
+        return this.courseMapper.toDTO(courseRepository.save(courseMapper.toEntity(courseDTO)));
+    }
 
     @Transactional
     public CourseDTO updateCourse(long id, String name){

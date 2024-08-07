@@ -29,8 +29,8 @@ public class CourseController {
     }
 
     @PostMapping("/add")
-    public CourseDTO createCourse(Course course) {
-        return courseService.createCourse(course);
+    public CourseDTO createCourse(CourseDTO courseDTO) {
+        return courseService.createCourse(courseDTO);
     }
 
     @PutMapping("/update/{id}")
