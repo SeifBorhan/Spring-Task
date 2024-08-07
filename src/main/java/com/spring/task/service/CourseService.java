@@ -65,13 +65,11 @@ public class CourseService {
 
     @Transactional
     public CourseDTO viewCourse(long id){
-        Optional<Course> optionalCourse = courseRepository.findById(id);
-        return optionalCourse.map(this.courseMapper::toDTO).orElse(null);
+        return courseRepository.findById(id).map(courseMapper::toDTO).orElse(null);
     }
 
     public Page<CourseDTO> getAllCourses(int page, int size) {
-        PageRequest pageRequest = PageRequest.of(page, size);
-        return courseRepository.findAll(pageRequest).map(courseMapper::toDTO);
+        return courseRepository.findAll(PageRequest.of(page, size)).map(courseMapper::toDTO);
     }
 
 }

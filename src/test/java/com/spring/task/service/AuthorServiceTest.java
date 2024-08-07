@@ -29,9 +29,6 @@ class AuthorServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @AfterEach
-    void tearDown() {
-    }
 
     @Test
     void getAuthorByEmail_validEmail_succeed() {
