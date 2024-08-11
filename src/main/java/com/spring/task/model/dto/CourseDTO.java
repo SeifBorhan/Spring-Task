@@ -1,21 +1,26 @@
 package com.spring.task.model.dto;
 
-import com.spring.task.model.entity.Assessment;
-import com.spring.task.model.entity.Author;
-import com.spring.task.model.entity.Rating;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import java.util.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CourseDTO {
+
     private long id;
+
+    @NotNull(message = "Name is required")
     private String name;
+
+    @NotBlank(message = "Description is required")
     private String description;
+
+    @NotNull(message = "Credit is required")
     private int credit;
-    private List<Author> authors;
-    private List<Rating> ratings;
-    private Assessment assessment;
 
 }

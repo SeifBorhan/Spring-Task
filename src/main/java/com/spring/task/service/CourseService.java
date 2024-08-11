@@ -5,12 +5,14 @@ import com.spring.task.model.dto.CourseDTO;
 import com.spring.task.model.entity.Course;
 import com.spring.task.model.mapper.CourseMapper;
 import com.spring.task.repository.CourseRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -20,15 +22,15 @@ public class CourseService {
 
     private final CourseRepository courseRepository;
 
-    @Autowired
-    private CourseMapper courseMapper;
+    private final CourseMapper courseMapper;
 
 
     @Autowired
     public CourseService(
-            @Qualifier("firstCourseRecommender") CourseRecommender courseRecommender,CourseRepository courseRepository) {
+            @Qualifier("firstCourseRecommender") CourseRecommender courseRecommender,CourseRepository courseRepository,CourseMapper courseMapper) {
         this.courseRecommender = courseRecommender;
         this.courseRepository = courseRepository;
+        this.courseMapper = courseMapper;
     }
 
     @Autowired
@@ -40,7 +42,7 @@ public class CourseService {
 
 
     @Transactional
-    public CourseDTO createCourse(CourseDTO courseDTO) {
+    public CourseDTO createCourse(@Valid CourseDTO courseDTO) {
         return this.courseMapper.toDTO(courseRepository.save(courseMapper.toEntity(courseDTO)));
     }
 
@@ -52,20 +54,29 @@ public class CourseService {
            c.setName(name);
            return this.courseMapper.toDTO(courseRepository.save(c));
        }
-        return null;
+        throw new RuntimeException("Course not found");
     }
 
 
 
     @Transactional
     public void deleteCourse(long id){
+        if (id == 0) {
+            throw new IllegalArgumentException("Id cannot be zero");
+        }
         courseRepository.deleteById(id);
     }
 
 
     @Transactional
     public CourseDTO viewCourse(long id){
-        return courseRepository.findById(id).map(courseMapper::toDTO).orElse(null);
+        if (id == 0) {
+            throw new IllegalArgumentException("Id cannot be zero");
+        }
+
+        return courseRepository.findById(id).map(courseMapper::toDTO)
+                .orElseThrow(
+                () -> new RuntimeException("Course not found"));
     }
 
     public Page<CourseDTO> getAllCourses(int page, int size) {

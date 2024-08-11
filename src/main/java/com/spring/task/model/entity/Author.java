@@ -1,6 +1,10 @@
 package com.spring.task.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.web.bind.annotation.Mapping;
 
@@ -16,13 +20,16 @@ import java.util.*;
 public class Author {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable=false)
+    @Column
+    @NotBlank(message = "Name is required")
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
+    @Email(message = "Email should be valid")
+    @NotBlank(message = "Email is required")
     private String email;
 
     private Date birthdate;

@@ -3,15 +3,17 @@ package com.spring.task.controller;
 import com.spring.task.CourseRecommender;
 import com.spring.task.model.dto.CourseDTO;
 import com.spring.task.service.CourseService;
-import com.spring.task.model.entity.Course;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/courses")
+@Validated
 public class CourseController {
 
     private final CourseService courseService;
@@ -29,7 +31,7 @@ public class CourseController {
     }
 
     @PostMapping("/add")
-    public CourseDTO createCourse(CourseDTO courseDTO) {
+    public CourseDTO createCourse(@Valid CourseDTO courseDTO) {
         return courseService.createCourse(courseDTO);
     }
 

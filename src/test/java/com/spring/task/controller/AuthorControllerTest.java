@@ -10,9 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -53,7 +51,7 @@ class AuthorControllerTest {
                 .thenThrow(new RuntimeException("Author not found"));
 
         mockMvc.perform(get("/authors/DNE"))
-                .andExpect(status().isInternalServerError())
+                .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message").value("Author not found"));
     }
 
