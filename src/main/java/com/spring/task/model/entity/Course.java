@@ -19,9 +19,10 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull
+    @NotNull(message = "Name is required")
     private String name;
 
+    @NotBlank(message = "Description is required")
     private String description;
 
     private int credit;

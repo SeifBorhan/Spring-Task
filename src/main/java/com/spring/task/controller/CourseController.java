@@ -31,13 +31,13 @@ public class CourseController {
     }
 
     @PostMapping("/add")
-    public CourseDTO createCourse(@Valid CourseDTO courseDTO) {
+    public CourseDTO createCourse(@Valid @RequestBody CourseDTO courseDTO) {
         return courseService.createCourse(courseDTO);
     }
 
     @PutMapping("/update/{id}")
-    public CourseDTO updateCourse(@PathVariable long id, String name) {
-        return courseService.updateCourse(id,"Nemo");
+    public CourseDTO updateCourse(@PathVariable long id,@RequestBody String name) {
+        return courseService.updateCourse(id,name);
     }
 
     @DeleteMapping("/delete/{id}")
