@@ -40,7 +40,6 @@ public class CourseService {
     }
 
 
-
     @Transactional
     public CourseDTO createCourse(@Valid CourseDTO courseDTO) {
         return this.courseMapper.toDTO(courseRepository.save(courseMapper.toEntity(courseDTO)));
