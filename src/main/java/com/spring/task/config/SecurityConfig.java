@@ -31,7 +31,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/courses/view/{id}").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers("/courses/delete/**","/courses/add","/courses/update/**").authenticated()
                 )
                .addFilterBefore(customFilter, BasicAuthenticationFilter.class)
                 .httpBasic(withDefaults())
