@@ -23,7 +23,6 @@ public class AuthorDTO {
     private String name;
 
     @Email(message = "Email should be valid")
-    @NotNull
     @NotBlank(message = "Email is required")
     private String email;
 
