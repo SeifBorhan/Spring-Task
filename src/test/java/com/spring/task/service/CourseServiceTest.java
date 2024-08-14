@@ -27,6 +27,7 @@ class CourseServiceTest {
     @Mock
     private CourseMapper courseMapper;
 
+
     @InjectMocks
     private CourseService courseService;
 
